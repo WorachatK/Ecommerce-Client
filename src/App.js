@@ -1,24 +1,37 @@
-import logo from './logo.svg';
-import './App.css';
+import Home from "./pages/Home";
+import Product from "./pages/Product";
+import ProductList from "./pages/ProductList";
+import Register from "./pages/Register";
+import Login from "./pages/Login";
+import Cart from "./pages/Cart";
+import Success from "./pages/Success";
+
+import {
+  BrowserRouter,
+  Routes,
+  Route,
+  Navigate
+} from "react-router-dom";
+
+import { useSelector } from "react-redux"
+import Order from "./pages/Order";
 
 function App() {
+  const user = useSelector((state)=>state.user.currentUser)
+  console.log(user);
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/products/:catrgory" element={<ProductList />} />
+        <Route path="/product/:id" element={<Product/>} />
+        <Route path="/cart" element={user ? <Cart />:<Login/>} />
+        <Route path="/login" element={user ? <Navigate to="/"/>:<Login/>} />
+        <Route path="/register" element={user ? <Navigate to="/"/>:<Register/>} />
+        <Route path="/success" element={<Success/>} />
+        <Route path="/order" element={user ?<Order/>:<Home />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
 
