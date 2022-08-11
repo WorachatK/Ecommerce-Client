@@ -30,7 +30,7 @@ const Order = () => {
             setOrder(res.data)
         }
         getOrder()
-    },[])
+    },[user])
     console.log(order);
   return (
     <div>
