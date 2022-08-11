@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-const BASE_URL = "http://localhost:5500/api/"
+const BASE_URL = "https://ecommerce23656api.herokuapp.com/api"
 const TOKEN = ""
 
 export const publickRequest = axios.create({
